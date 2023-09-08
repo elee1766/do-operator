@@ -21,8 +21,9 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 	"strconv"
+
+	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 
 	"github.com/digitalocean/godo"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -141,6 +142,10 @@ func (r *DatabaseCluster) ValidateUpdate(old runtime.Object) (warnings admission
 	namePath := field.NewPath("spec").Child("name")
 	if oldCluster.Spec.Name != r.Spec.Name {
 		return warnings, field.Forbidden(namePath, "name is immutable")
+	}
+	namePath := field.NewPath("spec").Child("replicaClusterId")
+	if oldCluster.Spec.ReplicaClusterId != r.Spec.ReplicaClusterId {
+		return warnings, field.Forbidden(namePath, "replicaClusterId is immutable")
 	}
 	// TODO(awg) Remove once we support upgrades in the controller.
 	versionPath := field.NewPath("spec").Child("version")

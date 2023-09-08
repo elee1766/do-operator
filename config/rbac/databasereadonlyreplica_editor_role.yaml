@@ -1,0 +1,24 @@
+# permissions for end users to edit databasereadonlyreplicas.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: databasereadonlyreplica-editor-role
+rules:
+- apiGroups:
+  - databases.digitalocean.com
+  resources:
+  - databasereadonlyreplicas
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - databases.digitalocean.com
+  resources:
+  - databasereadonlyreplicas/status
+  verbs:
+  - get

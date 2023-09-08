@@ -36,6 +36,8 @@ type DatabaseClusterSpec struct {
 	Size string `json:"size"`
 	// Region is the slug of the DO region for the cluster.
 	Region string `json:"region"`
+	// ReplicaClusterId is the id of the database to promote to a primary from Readonly Replica
+	ReplicaClusterId string `json:"readonlyClusterId,omitempty"`
 }
 
 // ToGodoCreateRequest returns a create request for a database that will fulfill

@@ -33,9 +33,10 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 
+	"github.com/digitalocean/godo"
+
 	databasesv1alpha1 "github.com/digitalocean/do-operator/api/v1alpha1"
 	"github.com/digitalocean/do-operator/fakegodo"
-	"github.com/digitalocean/godo"
 	//+kubebuilder:scaffold:imports
 )
 
@@ -77,6 +78,9 @@ var _ = BeforeSuite(func() {
 	cfg, err = testEnv.Start()
 	Expect(err).NotTo(HaveOccurred())
 	Expect(cfg).NotTo(BeNil())
+
+	err = databasesv1alpha1.AddToScheme(scheme.Scheme)
+	Expect(err).NotTo(HaveOccurred())
 
 	err = databasesv1alpha1.AddToScheme(scheme.Scheme)
 	Expect(err).NotTo(HaveOccurred())

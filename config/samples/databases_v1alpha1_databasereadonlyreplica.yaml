@@ -1,0 +1,7 @@
+apiVersion: databases.digitalocean.com/v1alpha1
+kind: DatabaseReadonlyReplica
+metadata:
+  name: databasereadonlyreplica-sample
+spec:
+  # Add fields here
+  foo: bar

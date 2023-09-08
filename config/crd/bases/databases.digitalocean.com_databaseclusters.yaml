@@ -58,6 +58,12 @@ spec:
                 description: NumNodes is the number of nodes in the database cluster.
                 format: int64
                 type: integer
+              primaryClusterId:
+                description: "PrimaryClusterId is the id of the database to replicate.
+                  Setting this field will cause this databasecluster to be a Read-only
+                  Replica. \t// When this is set, size, numnodes, and version are
+                  ignored."
+                type: string
               region:
                 description: Region is the slug of the DO region for the cluster.
                 type: string
